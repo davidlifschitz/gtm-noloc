@@ -1,6 +1,13 @@
 {
   "name": "gtm-noloc",
   "private": true,
-  "scripts": { "test": "vitest run" },
-  "devDependencies": { "vitest": "^3.2.4" }
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "jsdom": "^26.1.0"
+  }
 }
