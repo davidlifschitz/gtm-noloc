@@ -98,6 +98,12 @@ function uniqueNames(names) {
   });
 }
 
+function drawOpaque(ctx, bmp) {
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(0, 0, bmp.width, bmp.height);
+  ctx.drawImage(bmp, 0, 0);
+}
+
 function logItem(doc, name, out, peek) {
   const li = doc.createElement("li");
   li.textContent = name + " → " + out + " ";
@@ -109,5 +115,5 @@ function logItem(doc, name, out, peek) {
 }
 
 if (typeof module !== "undefined") {
-  module.exports = { peekJpeg, crc32, zipStore, outName, logItem, uniqueNames };
+  module.exports = { peekJpeg, crc32, zipStore, outName, logItem, uniqueNames, drawOpaque };
 }
