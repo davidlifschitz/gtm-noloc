@@ -9,6 +9,9 @@ describe("peekJpeg", () => {
   it("finds GPS IFD (little endian)", () => {
     expect(peekJpeg(jpegWithExif([0x010f, 0x8825]))).toEqual({ jpeg: true, exif: true, gps: true });
   });
+  it("finds GPS IFD (big endian, as written by iPhones)", () => {
+    expect(peekJpeg(jpegWithExif([0x010f, 0x8825], false)).gps).toBe(true);
+  });
   it("EXIF without GPS", () => {
     expect(peekJpeg(jpegWithExif([0x010f]))).toEqual({ jpeg: true, exif: true, gps: false });
   });
