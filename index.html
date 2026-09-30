@@ -218,6 +218,7 @@
           $("warn").textContent = "Nothing decoded.";
           return;
         }
+        uniqueNames(out.map((o) => o.name)).forEach((n, i) => { out[i].name = n; });
         const blob = out.length === 1
           ? new Blob([out[0].data], { type: "image/jpeg" })
           : new Blob([zipStore(out)], { type: "application/zip" });
