@@ -21,7 +21,7 @@ function peekJpeg(buf) {
       const rd32 = (p) =>
         le
           ? u[p] | (u[p + 1] << 8) | (u[p + 2] << 16) | (u[p + 3] << 24)
-          : (u[p] << 24) | (u[p + 1] << 16) | (u[p + 2] << 8) | u[p];
+          : (u[p] << 24) | (u[p + 1] << 16) | (u[p + 2] << 8) | u[p + 3];
       try {
         const ifd0 = tiff + rd32(tiff + 4);
         const n = rd16(ifd0);
