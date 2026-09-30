@@ -88,6 +88,16 @@ function outName(name) {
   return (name.replace(/\.[^.]+$/, "") || "photo") + "_noloc.jpg";
 }
 
+function logItem(doc, name, out, peek) {
+  const li = doc.createElement("li");
+  li.textContent = name + " → " + out + " ";
+  const pill = doc.createElement("span");
+  pill.className = peek.gps || peek.exif ? "pill" : "pill ok";
+  pill.textContent = peek.gps ? "GPS found" : peek.exif ? "EXIF found" : "no GPS IFD";
+  li.appendChild(pill);
+  return li;
+}
+
 if (typeof module !== "undefined") {
-  module.exports = { peekJpeg, crc32, zipStore, outName };
+  module.exports = { peekJpeg, crc32, zipStore, outName, logItem };
 }

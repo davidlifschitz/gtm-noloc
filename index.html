@@ -206,13 +206,7 @@
           try {
             const j = await clean(f);
             out.push(j);
-            const li = document.createElement("li");
-            const tag = j.peek.gps
-              ? '<span class="pill">GPS found</span>'
-              : j.peek.exif
-                ? '<span class="pill">EXIF found</span>'
-                : '<span class="pill ok">no GPS IFD</span>';
-            li.innerHTML = f.name + " → " + j.name + " " + tag;
+            const li = logItem(document, f.name, j.name, j.peek);
             $("log").appendChild(li);
           } catch (_) {
             const li = document.createElement("li");
