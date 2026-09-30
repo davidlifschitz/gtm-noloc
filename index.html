@@ -152,7 +152,7 @@
         const c = document.createElement("canvas");
         c.width = bmp.width;
         c.height = bmp.height;
-        c.getContext("2d").drawImage(bmp, 0, 0);
+        drawOpaque(c.getContext("2d"), bmp);
         bmp.close();
         const blob = await new Promise((res) => c.toBlob(res, "image/jpeg", 0.9));
         const data = new Uint8Array(await blob.arrayBuffer());
