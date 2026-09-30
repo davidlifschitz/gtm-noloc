@@ -1,0 +1,6 @@
+{
+  "name": "gtm-noloc",
+  "private": true,
+  "scripts": { "test": "vitest run" },
+  "devDependencies": { "vitest": "^3.2.4" }
+}
