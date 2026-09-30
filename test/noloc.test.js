@@ -37,3 +37,12 @@ describe("outName", () => {
   it("swaps extension", () => expect(outName("IMG_1.HEIC.png")).toBe("IMG_1.HEIC_noloc.jpg"));
   it("falls back to photo", () => expect(outName(".png")).toBe("photo_noloc.jpg"));
 });
+
+describe("uniqueNames", () => {
+  const { uniqueNames } = require("../noloc.js");
+  it("keeps distinct names", () => expect(uniqueNames(["a_noloc.jpg", "b_noloc.jpg"])).toEqual(["a_noloc.jpg", "b_noloc.jpg"]));
+  it("suffixes collisions", () =>
+    expect(uniqueNames(["IMG_noloc.jpg", "IMG_noloc.jpg", "IMG_noloc.jpg"])).toEqual(["IMG_noloc.jpg", "IMG_noloc-2.jpg", "IMG_noloc-3.jpg"]));
+  it("avoids clashing with an existing suffixed name", () =>
+    expect(uniqueNames(["a-2.jpg", "a.jpg", "a.jpg"])).toEqual(["a-2.jpg", "a.jpg", "a-3.jpg"]));
+});

@@ -88,6 +88,16 @@ function outName(name) {
   return (name.replace(/\.[^.]+$/, "") || "photo") + "_noloc.jpg";
 }
 
+function uniqueNames(names) {
+  const seen = new Set();
+  return names.map((n) => {
+    let out = n;
+    for (let k = 2; seen.has(out); k++) out = n.replace(/(\.[^.]+)?$/, "-" + k + "$1");
+    seen.add(out);
+    return out;
+  });
+}
+
 function logItem(doc, name, out, peek) {
   const li = doc.createElement("li");
   li.textContent = name + " → " + out + " ";
@@ -99,5 +109,5 @@ function logItem(doc, name, out, peek) {
 }
 
 if (typeof module !== "undefined") {
-  module.exports = { peekJpeg, crc32, zipStore, outName, logItem };
+  module.exports = { peekJpeg, crc32, zipStore, outName, logItem, uniqueNames };
 }
